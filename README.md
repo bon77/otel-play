@@ -25,7 +25,6 @@ kind export kubeconfig --name unkind
 #### Initial
 ```
 helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
-helm install my-otel-demo open-telemetry/opentelemetry-demo`
 ```
 #### Install
 ```
@@ -36,6 +35,7 @@ helm install otel --namespace otel -f collector-values.yaml open-telemetry/opent
 ```
 helm list --all-namespaces
 helm delete otel --namespace otel
+kind delete cluster -n unkind
 ```
 
 ### k8s

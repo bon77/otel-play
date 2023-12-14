@@ -34,7 +34,8 @@ kubectl port-forward --address 0.0.0.0 services/my-otel-demo-grafana 3000:80
 
 Run demo
 ```
-helm install otel -f collector-values.yaml open-telemetry/opentelemetry-collector
+helm install otel --namespace otel -f collector-values.yaml open-telemetry/opentelemetry-collector
+
 ```
 
 Delete helm

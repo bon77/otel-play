@@ -92,6 +92,10 @@ config:
       verbosity: normal
     debug/detailed:
       verbosity: detailed
+    otlphttp/mimir:
+      endpoint: http://mimir-distributor.mimir:8080/otlp
+      headers:
+        X-Scope-OrgID: BANANA
   extensions:
     # The health_check extension is mandatory for this chart.
     # Without the health_check extension the collector will fail the readiness and liveliness probes.
@@ -152,6 +156,7 @@ config:
       metrics:
         exporters:
           - debug/detailed
+          - otlphttp/mimir
         processors:
           - memory_limiter
           - batch

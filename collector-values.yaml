@@ -141,9 +141,13 @@ config:
         processors:
           - memory_limiter
           - batch
+          - k8sattributes
         receivers:
           - otlp
           - prometheus
+          - k8s_cluster
+          - hostmetrics
+          - kubeletstats
 
 image:
   # If you want to use the core image `otel/opentelemetry-collector`, you also need to change `command.name` value to `otelcol`.

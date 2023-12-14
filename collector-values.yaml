@@ -86,10 +86,12 @@ configMap:
 # For example, {{ REDACTED_EMAIL }} becomes {{` {{ REDACTED_EMAIL }} `}}.
 config:
   exporters:
-    debug: {}
-    # Will be removed in a future release.
-    # Use the debug exporter instead.
-    logging: {}
+    debug/basic:
+      verbosity: basic
+    debug/normal:
+      verbosity: normal
+    debug/detailed:
+      verbosity: detailed
   extensions:
     # The health_check extension is mandatory for this chart.
     # Without the health_check extension the collector will fail the readiness and liveliness probes.
@@ -135,7 +137,7 @@ config:
     pipelines:
       metrics:
         exporters:
-          - debug
+          - debug/detailed
         processors:
           - memory_limiter
           - batch

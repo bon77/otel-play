@@ -226,7 +226,16 @@ topologySpreadConstraints: []
 # Allows for pod scheduler prioritisation
 priorityClassName: ""
 
-extraEnvs: []
+extraEnvs:
+  - name: MY_POD_IP
+    valueFrom:
+      fieldRef:
+        apiVersion: v1
+        fieldPath: status.podIP
+  - name: K8S_NODE_NAME
+    valueFrom:
+      fieldRef:
+        fieldPath: spec.nodeName
 extraEnvsFrom: []
 extraVolumes: []
 extraVolumeMounts: []

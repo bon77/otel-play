@@ -102,6 +102,7 @@ config:
     batch: {}
     # If set to null, will be overridden with values based on k8s resource limits
     memory_limiter: null
+    k8sattributes: null
   receivers:
     jaeger:
       protocols:
@@ -121,9 +122,14 @@ config:
       collection_interval: 20s
       root_path: /hostfs
     kubeletstats:
-      auth_type: serviceAccount
+      auth_type: 'serviceAccount'
       collection_interval: 20s
-      endpoint: ${env:K8S_NODE_NAME}:10250
+      endpoint: '${env:K8S_NODE_NAME}:10250'
+      insecure_skip_verify: true
+      metric_groups:
+        - node
+        - pod
+        - container
     k8s_cluster:
     prometheus:
       config:

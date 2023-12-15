@@ -113,7 +113,7 @@ config:
           value: START
           action: upsert
         - key: bbh_k8s_node_name
-          from_attribute: resource.k8s.node.name
+          value: ${K8S_NODE_NAME}
           action: upsert
         - key: bbh_last
           value: ENDEGELAENDE

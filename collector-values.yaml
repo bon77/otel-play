@@ -107,6 +107,29 @@ config:
     # If set to null, will be overridden with values based on k8s resource limits
     memory_limiter: null
     k8sattributes: null
+    attributes/add_bon_labels:
+      actions:
+        - key: bbh_first
+          value: START
+          action: upsert
+        - key: k8s_node_name
+          from_attribute: __meta_kubernetes_node_name
+          action: upsert
+        - key: k8s_node_name2
+          from_attribute: meta.kubernetes.node.name
+          action: upsert
+        - key: k8s_node_name3
+          from_attribute: kubernetes.node.name
+          action: upsert
+        - key: k8s_node_name4
+          from_attribute: node.name
+          action: upsert
+        - key: k8s_node_name5
+          from_attribute: k8s.node.name
+          action: upsert
+        - key: bbh_last
+          value: ENDEGELAENDE
+          action: upsert
   receivers:
     jaeger:
       protocols:
@@ -161,6 +184,7 @@ config:
           - memory_limiter
           - batch
           - k8sattributes
+          - attributes/add_bon_labels
         receivers:
           - otlp
           - prometheus

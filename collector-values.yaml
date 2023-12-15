@@ -112,19 +112,7 @@ config:
         - key: bbh_first
           value: START
           action: upsert
-        - key: k8s_node_name
-          from_attribute: __meta_kubernetes_node_name
-          action: upsert
-        - key: k8s_node_name2
-          from_attribute: meta.kubernetes.node.name
-          action: upsert
-        - key: k8s_node_name3
-          from_attribute: kubernetes.node.name
-          action: upsert
-        - key: k8s_node_name4
-          from_attribute: node.name
-          action: upsert
-        - key: k8s_node_name5
+        - key: bbh_k8s_node_name
           from_attribute: k8s.node.name
           action: upsert
         - key: bbh_last

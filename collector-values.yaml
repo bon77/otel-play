@@ -113,11 +113,17 @@ config:
           value: START
           action: upsert
         - key: bbh_k8s_node_name
-          from_attribute: k8s.node.name
+          from_attribute: resource.k8s.node.name
           action: upsert
         - key: bbh_last
           value: ENDEGELAENDE
           action: upsert
+    transform:
+      metric_statements:
+        - context: datapoint
+          statements:
+            - set(attributes["bbh_test"], "transformer")
+            - set(attributes["node_name"], attributes["resource.k8s.node.name"])
   receivers:
     jaeger:
       protocols:
@@ -173,6 +179,7 @@ config:
           - batch
           - k8sattributes
           - attributes/add_bon_labels
+          - transform
         receivers:
           - otlp
           - prometheus

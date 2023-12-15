@@ -63,6 +63,12 @@ kubectl --namespace grafana port-forward $POD_NAME 3000
 
 3. Login with the password from step 1 and the username: admin
 
+4. Add the `Mimir` / `Prometheus` Datasource
+Connections -> Data sources -> Add
+
+Prometheus server URL: `http://mimir-nginx.mimir/prometheus`
+Add the custom HTTP header: `X-Scope-OrgID` with value `BANANA`
+
 #### Cleanup
 ```
 helm list --all-namespaces
